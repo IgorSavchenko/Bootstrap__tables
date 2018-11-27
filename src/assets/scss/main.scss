@@ -1,0 +1,133 @@
+// variables
+$color-lightblue: #33d9de;
+$color-darkblue: #007bff;
+$font-Lato: 'Lato', sans-serif;
+//fonts
+@import url( 'https://fonts.googleapis.com/css?family=Lato:400,700,900|Open+Sans');
+//common styles
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  padding: 15px;
+  font-family: var(--font-family-sans-serif);//from bootstrap
+  font-size: 16px;
+  color: var(--dark);//from bootstrap
+}
+
+h1 {
+  margin: 10px auto;
+  font-size: calc(5.6vmin);//responsive font-size
+  text-align: center;
+}
+
+.table {
+  width: 100%!important;
+}
+
+.table thead th {
+  text-align: center;
+  vertical-align: top;
+}
+
+.table tbody > tr {
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  &:hover, &.active {
+    background-color: lighten($color-lightblue, 40%)!important;
+  }
+}
+
+.button {
+  display: block;
+  margin: 20px auto;
+  cursor: pointer;
+  background-color: $color-darkblue;
+  background-image: linear-gradient(45deg, $color-lightblue 0%, $color-lightblue 55%, $color-darkblue 90%);
+  background-position: 100% 0;
+  background-size: 200% 200%;
+  border-radius: 50px;
+  padding: 12px 48px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white);//from bootstrap
+  border: none;
+  box-shadow: 0 8px 16px 0 rgba(0, 40, 120, .35);
+  transition: all 0.3s ease;
+  &:hover {
+    box-shadow: 0 0px 0px 0 rgba(0, 40, 120, 0);
+    background-position: 0 0;
+  }
+}
+
+//makes table looks better on smartphones and tablets
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  .table {
+    font-size: 0.875rem;
+
+    // Force table to not be like tables anymore
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+
+    // Hide table headers (but not display: none; for accessibility)
+    thead tr, tbody th {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    tbody td {
+      // looks like a "row"
+      border: none;
+      position: relative;
+      padding-left: calc(100px + 100vw/5);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--grey);//from bootstrap
+    }
+
+    tbody td:not(:first-of-type) {
+      margin-top: 20px;
+    }
+
+    tbody td {
+      padding-bottom: 10px;
+      &:last-of-type {
+        padding-bottom: 20px;
+      }
+      &:before {
+        // positioning like a table header
+        // display: block;
+        position: absolute;
+        top: 4px;
+        left: 10px;
+        width: calc(100px + 100vw/5);
+        padding-right: 10px;
+        border: 1px solid var(--grey);
+      }
+      //table header data
+      &:nth-of-type(1):before { content: "Имя клиента:"; }
+      &:nth-of-type(2):before { content: "ЕГРПОУ клиента:"; }
+      &:nth-of-type(3):before { content: "МФО банка плательщика:"; }
+      &:nth-of-type(4):before { content: "Банк клиента:"; }
+      &:nth-of-type(5):before { content: "Счет клиента:"; }
+      &:nth-of-type(6):before { content: "МФО банка получателя:"; }
+      &:nth-of-type(7):before { content: "Банковский счет:"; }
+      &:nth-of-type(8):before { content: "Платежный документ:"; }
+      &:nth-of-type(9):before { content: "Дата платежа:"; }
+      &:nth-of-type(10):before { content: "Дата операции:"; }
+      &:nth-of-type(11):before { content: "Описание:"; }
+      &:nth-of-type(12):before { content: "Сумма:"; }
+    }
+
+  }
+
+}
